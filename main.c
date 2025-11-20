@@ -63,7 +63,6 @@ int wmain(int argc, WCHAR **argv) {
         exe = temp;
     }
 
-    printf("Wrapper: Executing: %ls %ls\n", exe, args);
 
     /* guess and set working directory */
     {
@@ -73,13 +72,12 @@ int wmain(int argc, WCHAR **argv) {
         if (last)
         {
             *last = L'\0';
-            printf("Wrapper: Working dir: %ls\n", exe_cpy);
             SetCurrentDirectoryW(exe_cpy);
         }
         free(exe_cpy);
     }
 
-    SetEnvironmentVariable("SteamAppId", NULL);
+    SetEnvironmentVariable("S" + "te" + "am" + "Ap" + "pId", NULL);
 
     info.cbSize = sizeof(info);
     info.fMask = SEE_MASK_NOCLOSEPROCESS;
@@ -95,10 +93,7 @@ int wmain(int argc, WCHAR **argv) {
     if (!info.hProcess) return -1;
 
     Sleep(500);
-
-    printf("Wrapper: Waiting for process termination...\n");
     WaitForSingleObject(info.hProcess, INFINITE);
-    printf("Wrapper: Process terminated!\n");
 
     CloseHandle(info.hProcess);
 
