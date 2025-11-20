@@ -76,15 +76,8 @@ int wmain(int argc, WCHAR **argv) {
         }
         free(exe_cpy);
     }
-    char abc[13];
-    strcpy(abc, "St");
-    strcpy(abc, "ea");
-    strcpy(abc, "mA");
-    strcpy(abc, "pp");
-    strcpy(abc, "Id");
 
-
-    SetEnvironmentVariable(abc, NULL);
+    SetEnvironmentVariable("SteamAppId", NULL);
 
     info.cbSize = sizeof(info);
     info.fMask = SEE_MASK_NOCLOSEPROCESS;
